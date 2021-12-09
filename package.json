@@ -1,6 +1,6 @@
 {
   "name": "@consent-modal-demo/consent-modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "repository": "git://github.com/consent-modal-demo/consent-modal",
   "main": "index.js",
