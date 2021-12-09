@@ -29,11 +29,11 @@ function loadConsent() {
   return consent;
 }
 
-export default (
+module.exports = (
   onStateChange = () => {},
   mountElement = document.getElementById('consent-modal')
 ) => {
-  if (element.innerHTML !== '') {
+  if (mountElement.innerHTML !== '') {
     throw new Error(
       `failed to inject consent modal. expected empty element but got: ${mountElement.innerHTML}`
     );
