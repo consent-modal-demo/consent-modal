@@ -12,9 +12,6 @@
     "prestart": "npm run build && cp dist/*.js dist/consent-modal-min.js",
     "start": "webpack serve --config webpack.test-jig.config.js --static-directory dist/ --open"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "author": "Ronald Chen <pyrogx1133@gmail.com>",
   "license": "ISC",
   "devDependencies": {
