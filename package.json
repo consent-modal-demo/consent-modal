@@ -7,6 +7,8 @@
   "scripts": {
     "prebuild": "rimraf dist/",
     "build": "webpack --mode production",
+    "prerelease": "npm run build",
+    "release": "git checkout releases && cp dist/* . && git add consent-modal-*-min.js && git commit",
     "start": "webpack serve --config webpack.test-jig.config.js --open"
   },
   "publishConfig": {
