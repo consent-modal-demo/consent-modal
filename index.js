@@ -33,6 +33,11 @@ module.exports = (
   onStateChange = () => {},
   mountElement = document.getElementById('consent-modal')
 ) => {
+  if (!mountElement) {
+    throw new Error(
+      'failed to find element where consent modal is mounted. by default attempts to mount to <div id="consent-modal"></div>'
+    );
+  }
   if (mountElement.innerHTML !== '') {
     throw new Error(
       `failed to inject consent modal. expected empty element but got: ${mountElement.innerHTML}`
@@ -43,13 +48,12 @@ module.exports = (
 
   function updateState() {
     const consent = loadConsent();
+
     const showModal = consent === 'indeterminate' && !dismissed;
     document.getElementById(containerId).style.display = showModal
       ? 'flex'
       : 'none';
-    if (onStateChange) {
-      onStateChange(consent, showModal);
-    }
+    onStateChange(consent, showModal);
   }
 
   // this is generally a security issue, but not a problem here
