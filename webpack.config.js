@@ -8,7 +8,9 @@ module.exports = {
 
   output: {
     path: path.join(process.cwd(), 'dist'),
-    filename: `[name]-${version}-min.js`
+    filename: `[name]-${version}-min.js`,
+    library: 'ConsentModal',
+    libraryTarget: 'window'
   },
 
   mode: 'production',

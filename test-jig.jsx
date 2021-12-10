@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
-import ConsentModal from './index';
-
 const App = () => {
   const [consent, setConsent] = useState();
   const [showingModal, setShowingModal] = useState();
   useEffect(() => {
-    ConsentModal((consent, showingModal) => {
+    window.ConsentModal((consent, showingModal) => {
       setConsent(consent);
       setShowingModal(showingModal);
     });

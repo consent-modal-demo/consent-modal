@@ -1,3 +1,4 @@
+const mountId = 'consent-modal';
 const containerId = 'consent-modal-container';
 const giveButtonId = 'consent-modal-give-button';
 const denyButtonId = 'consent-modal-deny-button';
@@ -29,19 +30,17 @@ function loadConsent() {
   return consent;
 }
 
-module.exports = (
-  onStateChange = () => {},
-  mountElement = document.getElementById('consent-modal')
-) => {
+module.exports = (onStateChange = () => {}) => {
+  let mountElement = document.getElementById(mountId);
   if (!mountElement) {
-    throw new Error(
-      'failed to find element where consent modal is mounted. by default attempts to mount to <div id="consent-modal"></div>'
-    );
+    mountElement = document.createElement('div');
+    mountElement.id = mountId;
+    document.body.append(mountElement);
   }
-  if (mountElement.innerHTML !== '') {
-    throw new Error(
-      `failed to inject consent modal. expected empty element but got: ${mountElement.innerHTML}`
-    );
+  if (mountElement.innerHTML === '') {
+    // this is generally a security issue, but not a problem here
+    // because we are not interpolating user input into modalHtml
+    mountElement.innerHTML = modalHtml;
   }
 
   let dismissed = false;
@@ -55,10 +54,6 @@ module.exports = (
       : 'none';
     onStateChange(consent, showModal);
   }
-
-  // this is generally a security issue, but not a problem here
-  // because we are not interpolating user input into modalHtml
-  mountElement.innerHTML = modalHtml;
 
   document.getElementById(giveButtonId).addEventListener('click', () => {
     window.localStorage.setItem('consent', 'given');
