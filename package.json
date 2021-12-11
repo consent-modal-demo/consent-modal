@@ -7,6 +7,7 @@
   "scripts": {
     "prebuild": "rimraf dist/",
     "build": "webpack --mode production",
+    "build:react": "webpack --config webpack.react.config.js --mode production",
     "prerelease": "npm run build",
     "release": "git checkout releases && cp dist/* . && git add consent-modal-*-min.js && git commit",
     "prestart": "npm run build && cp dist/*.js dist/consent-modal-min.js",
